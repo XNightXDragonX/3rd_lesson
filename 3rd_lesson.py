@@ -33,7 +33,6 @@ def recipes_func(file_name):
 
 def get_shop_list_by_dishes(dishes, person_count, finished_cook_book):
     shop_list = {}
-
     for dish in dishes:
         if dish in finished_cook_book:
             for ingridient in finished_cook_book[dish]:
@@ -48,6 +47,7 @@ def get_shop_list_by_dishes(dishes, person_count, finished_cook_book):
             print("Блюдо '{dish}' отсутствует в книге рецептов.")
     return shop_list
 
+
 def merge_files(folder_name, file_names, output_file):
     file_data = []
     for file_name in file_names:
@@ -55,9 +55,7 @@ def merge_files(folder_name, file_names, output_file):
         with open(file_path, encoding = 'utf-8') as f:
             lines = f.readlines()
         file_data.append((file_name, len(lines), lines))
-
     file_data.sort(key = lambda x: x[1])
-
     with open(output_file, 'w', encoding = 'utf-8') as output_f:
         for file_name, line_count, lines in file_data:
             output_f.write(f"{file_name}\n")
@@ -66,15 +64,10 @@ def merge_files(folder_name, file_names, output_file):
             output_f.write("\n")
 
 
-
-
-    
-
 file_name = 'recipes.txt'
 folder_name = 'files'
 file_names = ['1.txt', '2.txt', '3.txt']
 output_file = 'files/merged.txt'
-
 
 finished_cook_book = recipes_func(file_name)
 finished_get_shop_list_by_dishes = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2, finished_cook_book)
